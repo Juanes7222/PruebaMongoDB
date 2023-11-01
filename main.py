@@ -1,4 +1,4 @@
-from pymongo import MongoClient, errors
+from pymongo import MongoClient, errors  #pip install pymongo
 
 def get_connection_database():
     try:
@@ -62,7 +62,7 @@ def delete_data(collection, *data):
     # in which the "name" field is either "elotes" or "fried rice".
 
     my_result = collection.delete_many({ "$or": [*data]})
-    print("I deleted %x records." %(my_result.deleted_count))
+    print(f"I deleted {my_result.deleted_count} records.")
     print("\n")
 
 def print_data(collection, field=None):
@@ -71,13 +71,15 @@ def print_data(collection, field=None):
 
         print(f"id: {doc.get('_id')} name: {doc.get('item_name')}")
 
-# This is added so that many files can reuse the function get_database()
+
 if __name__ == "__main__":   
   
-   # Get the database
+    # Get the database
     db = create_database("prueba")
     # Get collection name
     collection_name = get_collection_name(db, "user_1_items")
+    
+    # Create registers
     item_1 = {
     "_id" : "U1IT00001",
     "item_name" : "Blender",
@@ -95,11 +97,23 @@ if __name__ == "__main__":
     "price" : 36,
     "item_description" : "brown country eggs"
     }
+    
+    # Insert registers on the database
     insert_data(collection_name, [item_1, item_2])
+    
+    # Verify the database content
     print_data(collection_name)
-    update_collection(collection_name, {"_id": "U1IT00002"}, {"item_name": "Butter"})
-    print_data(collection_name)
-    delete_data(collection_name, {"item_name": "Butter"})
-    print_data(collection_name)
+    
+    # Update item name where the id is U1IT00002
+    # update_collection(collection_name, {"_id": "U1IT00002"}, {"item_name": "Butter"})
+    
+    # # Verify the database content
+    # print_data(collection_name)
+    
+    # # Delete the data where item name is Butter
+    # delete_data(collection_name, {"item_name": "Butter"})
+    
+    # # Verify the database content
+    # print_data(collection_name)
     
     
