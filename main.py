@@ -47,7 +47,7 @@ def update_collection(collection, identifier, new_data):
         print("Here's the updated recipe:")
         print(my_doc)
     else:
-        print("I didn't find any recipes that contain 'potato' as an ingredient.")
+        print(f"I didn't find any recipes that contain {identifier}.")
         print("\n")
 
 def delete_data(collection, *data):
@@ -56,11 +56,10 @@ def delete_data(collection, *data):
     # As with other CRUD methods, you can delete a single document 
     # or all documents that match a specified filter. To delete all 
     # of the documents in a collection, pass an empty filter to 
-    # the delete_many() method. In this example, we'll delete two of 
-    # the recipes.
+    # the delete_many() method. 
     #
     # The query filter passed to delete_many uses $or to look for documents
-    # in which the "name" field is either "elotes" or "fried rice".
+    # in which the passed data.
 
     my_result = collection.delete_many({ "$or": [*data]})
     print(f"I deleted {my_result.deleted_count} records.")
