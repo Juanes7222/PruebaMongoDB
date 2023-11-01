@@ -1,4 +1,5 @@
 from pymongo import MongoClient, errors  #pip install pymongo
+from pprint import pprint
 
 def get_connection_database():
     try:
@@ -67,9 +68,9 @@ def delete_data(collection, *data):
 
 def print_data(collection, field=None):
     for doc in get_data_from_collection(collection, field):
-        print(doc)
+        pprint(doc)
 
-        print(f"id: {doc.get('_id')} name: {doc.get('item_name')}")
+        # print(f"id: {doc.get('_id')} name: {doc.get('item_name')}")
 
 
 if __name__ == "__main__":   
@@ -105,15 +106,15 @@ if __name__ == "__main__":
     print_data(collection_name)
     
     # Update item name where the id is U1IT00002
-    # update_collection(collection_name, {"_id": "U1IT00002"}, {"item_name": "Butter"})
+    update_collection(collection_name, {"_id": "U1IT00002"}, {"item_name": "Butter"})
     
-    # # Verify the database content
-    # print_data(collection_name)
+    # Verify the database content
+    print_data(collection_name)
     
-    # # Delete the data where item name is Butter
-    # delete_data(collection_name, {"item_name": "Butter"})
+    # Delete the data where item name is Butter
+    delete_data(collection_name, {"item_name": "Butter"})
     
-    # # Verify the database content
-    # print_data(collection_name)
+    # Verify the database content
+    print_data(collection_name)
     
     
