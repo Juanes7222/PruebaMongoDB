@@ -4,7 +4,7 @@ from pprint import pprint
 def get_connection_database():
     try:
         # Provide the mongodb atlas url to connect python to mongodb using pymongo
-        CONNECTION_STRING = "mongodb+srv://<username>:<password>@<database_name>.bwggemr.mongodb.net/" # Replace the values in <> with your values proyect
+        CONNECTION_STRING = "mongodb+srv://<username>:<password>@<database_name>.bwggemr.mongodb.net/" # Replace the values between <> with your proyect values
         # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
         client = MongoClient(CONNECTION_STRING)
         return client
